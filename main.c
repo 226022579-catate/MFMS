@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Function Declaration
+void employeeMenu();
+void budgetMenu();
+void supplierMenu();
+void assetMenu();
+void reportMenu();
+
 int main() {
 //Veriable Declaration
   int choice;
@@ -20,19 +27,19 @@ int main() {
 
         switch(choice) { //choicing the user choice
                 case 1:
-                    printf("\nEmployee Management\n");
+                    employeeMenu(); //calling the employee menu
                     break;
                 case 2:
-                    printf("\nBudget Management\n");
+                    budgetMenu(); //calling the budget menu
                     break;
                 case 3:
-                    printf("\nSupplier Management\n");
+                    supplierMenu(); //calling the supplier menu
                     break;
                 case 4:
-                    printf("\nAsset Management\n");
+                    assetMenu(); //calling asset menu
                     break;
                 case 5:
-                    printf("\nReports\n");
+                    reportMenu(); //calling report menu
                     break;
                 default:
                     printf("\aInvalid choice. Please try again!!!\n"); /* Error message if the user's choice
