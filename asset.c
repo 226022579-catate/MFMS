@@ -7,6 +7,6 @@ void assetMenu();
 //Displaying the Asset Menu
 void assetMenu() {
 
-  printf("\nWELLCOME TO BUDGET MENU\n");
+  printf("\nWELLCOME TO ASSET MENU\n");
 
 }
