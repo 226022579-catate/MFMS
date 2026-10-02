@@ -1,56 +1,14 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-//Function Declaration
-void assetMenu();
-
-//Displaying the Asset Menu
-void assetMenu() {
-
-  printf("\nWELLCOME TO ASSET MENU\n");
-
-}
-
-#include <stdio.h> 
-int main() {
-
-    char municipalityName[70];
-    char majorName[70];
-    float population;
-
-    printf("Municipal Financial Management System\n");
-    printf("Welcome to Windhoek Municipality\n\n");
-    
-    printf("Enter Municipality Name: ");
-    scanf("%s", municipalityName);
-    
-    printf("\nEnter Municipality Major: ");
-    scanf("%s", majorName);
-    
-    printf("\nEnter Population: ");
-    scanf("%f", &population);
-
-    printf("\nMUNICIPALITY REPORT");
-    printf("\n--------------------------");
-    printf("\nMunicipality name: %s", municipalityName);
-    printf("\nMunicipality Major: %s", majorName);
-    printf("\nPopulation: %.2f", population);
-    printf("\n--------------------------");
-    
-
-return 0;
-    }
-
-    #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include "assets.h"
+float getTotalAssetValue(void);
  
 #define MAX_ASSETS 100
 #define NAME_LEN   50
  
-/* ---------- Private data (only visible inside assets.c) ---------- */
+
 static int   assetID[MAX_ASSETS];
 static char  assetName[MAX_ASSETS][NAME_LEN];
 static char  assetType[MAX_ASSETS][NAME_LEN];
@@ -59,7 +17,7 @@ static char  assetDepartment[MAX_ASSETS][NAME_LEN];
 static char  assetCondition[MAX_ASSETS][NAME_LEN];
 static int   assetCount = 0;
  
-/* ---------- Private prototypes ---------- */
+
 static void addAsset(void);
 static void displayAssets(void);
 static void searchAsset(void);
@@ -72,7 +30,7 @@ static void readText(const char *prompt, char *dest, int size);
 static void readCondition(char *dest, int size);
 static void toLowerCopy(const char *src, char *dest, int size);
  
-/* ================= MENU ================= */
+
 void assetMenu(void)
 {
     int choice;
@@ -94,7 +52,7 @@ void assetMenu(void)
     } while (choice != 4);
 }
  
-/* ================= CORE FUNCTIONS ================= */
+
 static void addAsset(void)
 {
     int id;
@@ -217,7 +175,7 @@ static int isIdUsed(int id)
     return findAssetByID(id) != -1;
 }
  
-/* ================= INPUT VALIDATION HELPERS ================= */
+
 static int readInt(const char *prompt)
 {
     char line[64], *end;
@@ -248,7 +206,7 @@ static float readPositiveFloat(const char *prompt)
     }
 }
  
-/* Reads a non-empty line (spaces allowed) into dest */
+
 static void readText(const char *prompt, char *dest, int size)
 {
     char line[128];
@@ -288,7 +246,7 @@ static void toLowerCopy(const char *src, char *dest, int size)
     dest[i] = '\0';
 }
  
-/* ================= GETTERS FOR REPORTS MODULE ================= */
+
 int         getAssetCount(void)            { return assetCount; }
 int         getAssetID(int i)              { return assetID[i]; }
 const char *getAssetName(int i)            { return assetName[i]; }
