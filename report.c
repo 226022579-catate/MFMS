@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "assets.h"
+#include "budget.h"
 
 //Function Declaration
-void reportMenu();
-void assetReport();
-void employeeReport();
-void budgetReport();
-void supplierReport();
+void reportMenu(void);
+void assetReport(void);
+void budgetReport(void);
+void employeeReport(void);
+void supplierReport(void);
 
 
 //Displaying the menu for Reports
@@ -32,8 +33,8 @@ void reportMenu() {
         break;
 
     case 2:
-        printf("\nBudget Report selected.\n");
-        break;
+    budgetReport();
+    break;
 
     case 3:
         printf("\nSupplier Report selected.\n");
@@ -51,6 +52,7 @@ void reportMenu() {
         printf("\nInvalid choice. Please try again.\n");
     }
 }
+
 
 
 void assetReport(void)
@@ -82,5 +84,39 @@ void assetReport(void)
                getAssetDepartment(i),
                getAssetCondition(i));
     }
+}
+
+
+
+void budgetReport(void)
+{
+    double totalAllocated;
+    double totalExpenditure;
+    double totalRemaining;
+
+    totalAllocated = getTotalAllocated();
+    totalExpenditure = getTotalExpenditure();
+    totalRemaining = totalAllocated - totalExpenditure;
+
+    printf("\n========== BUDGET REPORT ==========\n");
+
+    if (getDeptCount() == 0)
+    {
+        printf("No budget information available.\n");
+        return;
+    }
+
+    printf("\nTotal Departments: %d\n", getDeptCount());
+    printf("Total Allocated: N$%.2f\n", totalAllocated);
+    printf("Total Expenditure: N$%.2f\n", totalExpenditure);
+    printf("Total Remaining: N$%.2f\n", totalRemaining);
+
+    printf("\n========== DEPARTMENT BUDGETS ==========\n");
+
+    displayBudgets();
+
+    printf("\n========== DEPARTMENTS OVER BUDGET ==========\n");
+
+    displayExceededDepartments();
 }
 
