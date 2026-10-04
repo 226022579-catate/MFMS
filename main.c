@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "supplier.h"
+#include "utilities.h"
+
 // Function Declaration
 void employeeMenu();
 void budgetMenu();
@@ -22,8 +24,7 @@ int main() {
         printf("5. Reports\n");
         printf("6. Exit\n");
 
-        printf("Enter your choice: ");
-        scanf("%d", &choice); // storing the user choice
+        choice = readInt("Enter your choice: ");
 
         switch(choice) { //choicing the user choice
                 case 1:

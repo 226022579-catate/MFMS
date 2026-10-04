@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "assets.h"
 #include "budget.h"
+#include "utilities.h"
 
 //Function Declaration
 void reportMenu(void);
@@ -23,8 +24,7 @@ void reportMenu() {
     printf("4. Asset Report\n");
     printf("5. Back to Main Menu\n");
 
-    printf("\nEnter your choice: ");
-    scanf("%d", &choice);
+    choice = readInt("\nEnter your choice: ");
 
     switch (choice) {
 
