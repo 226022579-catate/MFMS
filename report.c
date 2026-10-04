@@ -5,6 +5,7 @@
 #include "employee.h"
 #include "supplier.h"
 #include "report.h"
+#include "utilities.h"
 
 
 //Displaying the menu for Reports
@@ -19,8 +20,7 @@ void reportMenu(void) {
     printf("4. Asset Report\n");
     printf("5. Back to Main Menu\n");
 
-    printf("\nEnter your choice: ");
-    scanf("%d", &choice);
+    choice = readInt("\nEnter your choice: ");
 
     switch (choice) {
 
