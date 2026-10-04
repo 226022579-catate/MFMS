@@ -2,18 +2,13 @@
 #include <stdlib.h>
 #include "assets.h"
 #include "budget.h"
+#include "employee.h"
+#include "supplier.h"
+#include "report.h"
 #include "utilities.h"
 
-//Function Declaration
-void reportMenu(void);
-void assetReport(void);
-void budgetReport(void);
-void employeeReport(void);
-void supplierReport(void);
-
-
 //Displaying the menu for Reports
-void reportMenu() {
+void reportMenu(void) {
 
     int choice;
 
@@ -29,16 +24,16 @@ void reportMenu() {
     switch (choice) {
 
     case 1:
-        printf("\nEmployee Report selected.\n");
-        break;
+    employeeReport();
+    break;
 
     case 2:
     budgetReport();
     break;
 
     case 3:
-        printf("\nSupplier Report selected.\n");
-        break;
+    supplierReport();
+    break;
 
     case 4:
     assetReport();
@@ -120,3 +115,32 @@ void budgetReport(void)
     displayExceededDepartments();
 }
 
+
+void employeeReport(void)
+{
+    int count;
+
+    count = getEmployeeCount();
+
+    printf("\n========== EMPLOYEE REPORT ==========\n");
+
+    if (count == 0)
+    {
+        printf("No employees registered yet.\n");
+        return;
+    }
+
+    printf("\nTotal Employees: %d\n", count);
+    printf("Average Salary: N$%.2f\n", getAverageSalary());
+    printf("Highest Salary: N$%.2f\n", getHighestSalary());
+    printf("Lowest Salary: N$%.2f\n", getLowestSalary());
+}
+
+
+void supplierReport(void)
+{
+    printf("\n========== SUPPLIER REPORT ==========\n");
+
+    printf("\nRegistered Suppliers:\n");
+    displaySuppliers();
+}
