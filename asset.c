@@ -1,3 +1,4 @@
+/* asset.c - Asset Management module (MFMS Project A) */
 #include <stdio.h>
 #include <string.h>
 #include "assets.h"
@@ -14,24 +15,13 @@ char  assetCondition[MAX_ASSETS][20];
 int   assetCount = 0;
 
 /* Function prototypes */
-void  assetMenu(void);
-void  addAsset(void);
-void  displayAssets(void);
-void  searchAsset(void);
-void  printAsset(int index);
-int   findAssetByID(int id);
+void addAsset(void);
+void displayAssets(void);
+void searchAsset(void);
+void printAsset(int index);
+int  findAssetByID(int id);
 int   readAssetInt(void);
 float readAssetFloat(void);
-float getTotalAssetValue(void); // Added missing prototype to fix compilation error
-
-/* Functions for the Reports module (Getters) */
-int         getAssetCount(void);
-int         getAssetID(int index);
-float       getAssetValue(int index);
-void        getAssetName(int index, char name[]);
-void        getAssetType(int index, char type[]);
-void        getAssetDepartment(int index, char department[]);
-void        getAssetCondition(int index, char condition[]);
 
 /* ---------- Asset menu ---------- */
 void assetMenu(void)
@@ -216,7 +206,7 @@ void printAsset(int index)
            assetValue[index], assetDepartment[index], assetCondition[index]);
 }
 
-/* ---------- Find an asset by ID ---------- */
+/* ---------- Find an asset by ID: returns its position, or -1 ---------- */
 int findAssetByID(int id)
 {
     for (int i = 0; i < assetCount; i++) {
@@ -228,13 +218,14 @@ int findAssetByID(int id)
 }
 
 /* ---------- Input validation helpers ---------- */
+/* scanf returns the number of items read, so a result of 1 means valid input */
 int readAssetInt(void)
 {
     int number;
     char junk[50];
 
     while (scanf("%d", &number) != 1) {
-        scanf("%49s", junk); 
+        scanf("%49s", junk);   /* throw away the invalid text */
         printf("Invalid input. Please enter a whole number: ");
     }
     return number;
@@ -291,6 +282,7 @@ void getAssetCondition(int index, char condition[])
 float getTotalAssetValue(void)
 {
     float total = 0;
+
     for (int i = 0; i < assetCount; i++) {
         total = total + assetValue[i];
     }
