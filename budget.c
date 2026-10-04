@@ -27,10 +27,18 @@ double readAmount(char prompt[]) {
     }
     return value;
 }
- 
+
 void readName(char name[]) {
-    printf("Enter department name (no spaces, e.g. Public_Works): ");
-    scanf("%49s", name);
+    int len;
+
+    printf("Enter department name: ");
+    do {
+        fgets(name, NAME_LEN, stdin);
+        len = strlen(name);
+        if (len > 0 && name[len - 1] == '\n') {
+            name[len - 1] = '\0';          
+        }
+    } while (strlen(name) == 0);           
 }
  
 int findDepartment(char name[]) {
