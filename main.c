@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "supplier.h"
 #include "utilities.h"
+#include "employee.h"
+#include "budget.h"
+#include "supplier.h"
+#include "assets.h"
+#include "report.h"
 
 // Function Declaration
-void employeeMenu();
-void budgetMenu();
-void assetMenu();
-void reportMenu();
 void clear();
 
 int main() {
@@ -47,17 +47,17 @@ int main() {
                     clear(); // clear the screan to the user
                     reportMenu(); //calling report menu
                     break;
+                case 6:
+                    clear(); // clear the screan to the user
+                    printf("\a\nExiting . . . . .\n"); //displaying exiting message to the user
+                    printf("\a\n*****************PROGRAM FINISHED*******************\n");
+                    break;
                 default:
                     printf("\aInvalid choice. Please try again!!!\n"); /* Error message if the user's choice
                                                                         is not match with one of from the menu*/
         }
 
   } while (choice != 6); //still in running this menu until user choice 6 to exit the program.
-
-  clear(); // cleaning the screen
-  //Displaying finishing part to the user
-  printf("\a\nExiting . . . . .");
-  printf("\a\n*****************PROGRAM FINISHED*******************\n");
   
   return 0;
 
