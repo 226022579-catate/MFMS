@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "supplier.h"
 // Function Declaration
 void employeeMenu();
 void budgetMenu();
-void supplierMenu();
 void assetMenu();
 void reportMenu();
 void clear();
