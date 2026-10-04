@@ -3,6 +3,7 @@
 #include "assets.h"
 #include "budget.h"
 #include "employee.h"
+#include "supplier.h"
 
 
 //Function Declaration
@@ -39,8 +40,8 @@ void reportMenu() {
     break;
 
     case 3:
-        printf("\nSupplier Report selected.\n");
-        break;
+    supplierReport();
+    break;
 
     case 4:
     assetReport();
@@ -143,3 +144,11 @@ void employeeReport(void)
     printf("Lowest Salary: N$%.2f\n", getLowestSalary());
 }
 
+
+void supplierReport(void)
+{
+    printf("\n========== SUPPLIER REPORT ==========\n");
+
+    printf("\nRegistered Suppliers:\n");
+    displaySuppliers();
+}
