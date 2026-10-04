@@ -7,7 +7,6 @@
 #include "report.h"
 #include "utilities.h"
 
-
 //Displaying the menu for Reports
 void reportMenu(void) {
 

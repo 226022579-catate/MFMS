@@ -2,74 +2,65 @@
 #include <string.h>
 #include "budget.h"
  
-char   deptNames[MAX_DEPTS][NAME_LEN];  
-double allocated[MAX_DEPTS];             
-double spent[MAX_DEPTS];               
-int    deptCount = 0;                  
- 
-void clearBuffer(void) {
-    while (getchar() != '\n') {
-    }
-}
+char   deptNames[MAX_DEPTS][NAME_LEN];   
+double allocated[MAX_DEPTS];            
+double spent[MAX_DEPTS];                 
+int    deptCount = 0;             
  
 double readAmount(char prompt[]) {
     double value;
     int result;
+    char junk[100];
  
     printf("%s", prompt);
     result = scanf("%lf", &value);
-    clearBuffer();
  
     while (result != 1 || value < 0) {
-        if (result != 1)
+        if (result != 1) {
             printf("Invalid input. Please enter a number.\n");
-        else
+            scanf("%99s", junk);          
+        } else {
             printf("Amount cannot be negative.\n");
- 
+        }
         printf("%s", prompt);
         result = scanf("%lf", &value);
-        clearBuffer();
     }
     return value;
 }
- 
+
 void readName(char name[]) {
     int len;
- 
+
     printf("Enter department name: ");
-    fgets(name, NAME_LEN, stdin);
- 
-    len = strlen(name);
-    if (len > 0 && name[len - 1] == '\n')
-        name[len - 1] = '\0';              
- 
-    while (strlen(name) == 0) {
-        printf("Name cannot be empty. Enter department name: ");
+    do {
         fgets(name, NAME_LEN, stdin);
         len = strlen(name);
-        if (len > 0 && name[len - 1] == '\n')
-            name[len - 1] = '\0';
-    }
+        if (len > 0 && name[len - 1] == '\n') {
+            name[len - 1] = '\0';          
+        }
+    } while (strlen(name) == 0);           
 }
  
 int findDepartment(char name[]) {
     int i;
     for (i = 0; i < deptCount; i++) {
-        if (strcmp(deptNames[i], name) == 0)
+        if (strcmp(deptNames[i], name) == 0) {
             return i;
+        }
     }
     return -1;
 }
  
-double calculateRemaining(double allocated, double spent) {
-    return allocated - spent;
+double calculateRemaining(double alloc, double sp) {
+    return alloc - sp;
 }
  
-int isWithinBudget(double allocated, double spent) {
-    if (spent <= allocated)
+int isWithinBudget(double alloc, double sp) {
+    if (sp <= alloc) {
         return 1;
-    else
+    } else {
         return 0;
+    }
 }
  
 void addDepartmentBudget(void) {
@@ -120,8 +111,9 @@ void enterExpenditure(void) {
     spent[position] = spent[position] + amount;
  
     printf("Expenditure recorded.\n");
-    if (isWithinBudget(allocated[position], spent[position]) == 0)
+    if (isWithinBudget(allocated[position], spent[position]) == 0) {
         printf("WARNING: This department is over budget!\n");
+    }
 }
  
 void displayBudgets(void) {
@@ -139,10 +131,11 @@ void displayBudgets(void) {
         printf("Remaining Budget: N$%.2f\n",
                calculateRemaining(allocated[i], spent[i]));
  
-        if (isWithinBudget(allocated[i], spent[i]))
+        if (isWithinBudget(allocated[i], spent[i]) == 1) {
             printf("Status: WITHIN BUDGET\n");
-        else
+        } else {
             printf("Status: OVER BUDGET\n");
+        }
     }
 }
  
@@ -159,23 +152,26 @@ void displayExceededDepartments(void) {
         }
     }
  
-    if (found == 0)
+    if (found == 0) {
         printf("No department has exceeded its budget.\n");
+    }
 }
  
 double getTotalAllocated(void) {
     double total = 0;
     int i;
-    for (i = 0; i < deptCount; i++)
+    for (i = 0; i < deptCount; i++) {
         total = total + allocated[i];
+    }
     return total;
 }
  
 double getTotalExpenditure(void) {
     double total = 0;
     int i;
-    for (i = 0; i < deptCount; i++)
+    for (i = 0; i < deptCount; i++) {
         total = total + spent[i];
+    }
     return total;
 }
  
@@ -186,6 +182,7 @@ int getDeptCount(void) {
 void budgetMenu(void) {
     int choice = 0;
     int result;
+    char junk[100];
  
     while (choice != 5) {
         printf("\n===== BUDGET MANAGEMENT =====\n");
@@ -197,10 +194,10 @@ void budgetMenu(void) {
         printf("Enter your choice: ");
  
         result = scanf("%d", &choice);
-        clearBuffer();
  
         if (result != 1) {
             printf("Invalid input. Enter a number from 1 to 5.\n");
+            scanf("%99s", junk);          
             choice = 0;
         } else {
             switch (choice) {
@@ -226,4 +223,3 @@ void budgetMenu(void) {
     }
 }
  
-

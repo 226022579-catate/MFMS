@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "supplier.h"
+#include "utilities.h"
 
 #define MAX_SUPPLIERS 100
 
@@ -28,8 +29,7 @@ void supplierMenu()
         printf("5. Exit\n");
         printf("==========================================\n");
 
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
+        choice = readInt("Enter your choice: ");
 
         switch(choice)
         {
