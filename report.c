@@ -8,7 +8,7 @@
 
 
 //Displaying the menu for Reports
-void reportMenu() {
+void reportMenu(void) {
 
     int choice;
 
