@@ -4,14 +4,7 @@
 #include "budget.h"
 #include "employee.h"
 #include "supplier.h"
-
-
-//Function Declaration
-void reportMenu(void);
-void assetReport(void);
-void budgetReport(void);
-void employeeReport(void);
-void supplierReport(void);
+#include "report.h"
 
 
 //Displaying the menu for Reports
